@@ -1,6 +1,7 @@
 import numpy as np
 from src.api_collector import get_crypto_data
 from src.transform import transform_crypto_data
+import pandas as pd
 
 
 def calculate_metrics(df):
@@ -30,3 +31,11 @@ def analyze_multiple_cryptos(crypto_list):
         results[crypto] = metrics
 
     return results
+
+
+def generate_ranking(metrics_dict):
+    metrics_df = pd.DataFrame(metrics_dict).T
+    ranking_sharpe = metrics_df.sort_values(by="sharpe_ratio", ascending=False)
+    ranking_return = metrics_df.sort_values(by="cumulative_return", ascending=False)
+    ranking_volatility = metrics_df.sort_values(by="volatility")
+    return metrics_df, ranking_sharpe, ranking_return, ranking_volatility
