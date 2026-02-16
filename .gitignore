@@ -1,0 +1,11 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+data/raw/
+data/processed/
+data/results/
+__pycache__/
+.ipynb_checkpoints/
+.vscode/
+data/results/
