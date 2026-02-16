@@ -1,19 +1,14 @@
-from src.analysis import analyze_multiple_cryptos, generate_ranking
+import pandas as pd
+from src.cleaning import clean_crypto_data
 
-cryptos = ["bitcoin", "ethereum", "solana"]
+# Dados simulados
+data = {
+    "timestamp": [1, 2, 2, None],
+    "price": [100, 200, 200, 300]
+}
 
-metrics = analyze_multiple_cryptos(cryptos)
+df = pd.DataFrame(data)
 
-metrics_df, ranking_sharpe, ranking_return, ranking_vol = generate_ranking(metrics)
+df_clean = clean_crypto_data(df)
 
-print("Tabela Consolidada:")
-print(metrics_df)
-
-print("\nRanking por Sharpe:")
-print(ranking_sharpe)
-
-print("\nRanking por Retorno:")
-print(ranking_return)
-
-print("\nRanking por Volatilidade:")
-print(ranking_vol)
+print(df_clean)
